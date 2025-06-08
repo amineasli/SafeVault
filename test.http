@@ -1,0 +1,46 @@
+### Register a new user
+POST http://localhost:5143/register
+Content-Type: application/json
+
+{
+    "Username": "Amine",
+    "Password": "SecurePass123!",
+    "Role": "Admin"
+}
+
+### Login with credentials
+POST http://localhost:5143/login
+Content-Type: application/json
+
+{
+    "Username": "Amine",
+    "Password": "SecurePass123!"
+}
+
+### Attempt login with incorrect password
+POST http://localhost:5143/login
+Content-Type: application/json
+
+{
+    "Username": "Amine",
+    "Password": "WrongPass"
+}
+
+
+### Test SQL Injection Attempt
+POST http://localhost:5143/login
+Content-Type: application/json
+
+{
+    "Username": "' OR 1=1 --",
+    "Password": "MaliciousPass"
+}
+
+### Test XSS Attack
+POST http://localhost:5143/login
+Content-Type: application/json
+
+{
+    "Username": "<script>alert('XSS')</script>",
+    "Password": "SecurePass123"
+}
